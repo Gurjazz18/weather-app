@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react'
 import coldImage from "../assets/pexels-photo-4612394.webp"
 import Description from './Description'
 import { getWeatherData } from './WeatherData';
+import Forcast from './Forcast';
 //https://openweathermap.org/img/wn/02d@2x.png
+
+
 
 const Home = () => {
 
   const[weather,setWeather]=useState(null)
+  
 
   const[unit,setUnit]=useState('metric')
 
-  const[city,setCity]=useState('Pune')
+  const[city,setCity]=useState('london')
 
   useEffect(()=>{
 
     const fetchWeatherData= async()=>{
+
       const data=await getWeatherData(city,unit)
-      console.log(data)
+     
       setWeather(data)
     }
 
@@ -24,6 +29,7 @@ const Home = () => {
    
 
   },[unit,city])
+
 
   const handleUnitclick=(e)=>{
        const button=e.currentTarget;
@@ -33,6 +39,9 @@ const Home = () => {
 
   }
 
+
+
+
   const enterkeyPress=(e)=>{
     if(e.keyCode === 13){
       setCity(e.currentTarget.value)
@@ -40,47 +49,77 @@ const Home = () => {
 
   }
 
+
+
+  
+  
+
+
+
   return (
-    <div className='homewrap'style={{background:`url(${coldImage})`}}>
+     <div className='homewrap' style={{background:`url(${coldImage})`}}>
      
-     <div className='overlay'>
-     {
-      weather &&     <div className='container'>
-            <div className='section section_input'>
-               <input onKeyDown={enterkeyPress} type='text'  placeholder='Enter City' name='city'/>
-               <button onClick={(e)=>handleUnitclick(e)}>&deg;F</button>
-             </div>
+       <div className='overlay'>
 
-             <div className='section section_temperature'>
-              <div className='icon'>
-              <h3>{`${weather.name}, ${weather.country}`}</h3>
-              <img src={weather.iconUrl}
-               alt='weather-icon'  />
+      
+       {
 
-               <h3>{weather.description}</h3>
+         weather && <div className='container'>
 
-              </div>
+         <div className='section section_input'>
+       <input onKeyDown={enterkeyPress} type='text'  placeholder='Enter City' 
+          name='city'/>
+       <button onClick={(e)=>handleUnitclick(e)}>&deg;F</button>
+         </div>
+ 
+         <div className='section section_temperature'>
+        <div className='icon'>
+       <h3>{`${weather.name}, ${weather.country}`}</h3>
+       <img src={weather.iconUrl}
+       alt='weather-icon'  />
 
-              <div className='temperature'>
-                <h1>{ `${weather.temp.toFixed()}`} &deg;{`${unit==='metric'?"C":"F"}`}</h1>
-              </div>
-             </div>
+       <h3>{weather.description}</h3>
 
-             {/* description */}
+      </div>
 
-             <Description weather={weather} units={unit}/>
+      <div className='temperature'>
+        <h1>{ `${weather.temp.toFixed()}`} &deg;{`${unit==='metric'?"C":"F"}`} 
+          </h1>
+         </div>
+         </div>
 
-        </div>
+         {/* description */}
 
-     }
+         <Description weather={weather} units={unit}/>
 
-   
-     </div>
+         </div>
+
+      }
+      
 
 
       
-    </div>
-  )
-}
+
+
+    
+
+
+   
+       </div>
+
+        {weather && <Forcast lon={weather.lon} lat={weather.lat} />}
+
+      
+     </div>
+     
+     )
+   }
+    
+
+     
+
+
+      
+    
 
 export default Home

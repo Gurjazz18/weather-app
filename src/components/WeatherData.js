@@ -12,7 +12,7 @@ const getWeatherData=async(city,unit)=>{
   .then((res)=>res.json())
   .then((data)=>data)
 
-  console.log(data)
+  //console.log(data)
   
   const {
     weather,
@@ -20,6 +20,7 @@ const getWeatherData=async(city,unit)=>{
     wind:{speed},
     sys:{country},
     name,
+    coord:{lon,lat}
   
   
   }=data
@@ -37,9 +38,16 @@ const getWeatherData=async(city,unit)=>{
     humidity,
     speed,
     country,
-    name
+    name,lon,lat
 
   }
 }
+
+
+
+//...........daily data 
+
+
+
 
 export{getWeatherData}

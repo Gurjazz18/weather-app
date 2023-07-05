@@ -12,6 +12,7 @@
     background-color: var(--section-overlay);
     padding: 1rem;
     border-radius: .4rem;
+    font-size: 15px;
 }
 
 .description_card-icon{
