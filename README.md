@@ -14,9 +14,8 @@ Technologies used in the project:
 
 ## 💻 Screenshots
 
-**Home Page:**
-![Home Page]([image](https://github.com/Gurjazz18/weather-app/assets/96822665/5d298993-8d11-49e6-afad-14f32d3d24c6)
-)
+
+![image](https://github.com/Gurjazz18/weather-app/assets/96822665/5d298993-8d11-49e6-afad-14f32d3d24c6)
 
 
 
